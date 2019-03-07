@@ -1,2 +1,2 @@
 # project2
-Mon/Wed - Project 2 - Birungi, Prashanth &amp; Himanshu
+Mon/Wed - Project 2 - Birungi, Prashanth, Juan &amp; Himanshu
