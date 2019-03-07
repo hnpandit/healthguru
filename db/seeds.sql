@@ -12,3 +12,5 @@ values("FirstName4", "LastName4", "97215", 1976, "Female", "test4@email.com", "5
 use healthguru_db;
 insert into users (firstname, lastname, zipcode, birthyear, gender, email, cell, height, weight) 
 values("FirstName5", "LastName5", "91210", 1990, "Male", "test5@email.com", "617-760-2000", 200, 220);
+
+insert into 
