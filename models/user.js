@@ -7,6 +7,13 @@ var user = {
             cb(res);
         });
     },
+
+    selectOne: function (condition, cb) {
+        orm.selectOne("users", condition, function (res) {
+            cb(res);
+        });
+    },
+
     // The variables cols and vals are arrays.
     insertOne: function (cols, vals, cb) {
         orm.insertOne("users", cols, vals, function (res) {
