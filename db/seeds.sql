@@ -86,31 +86,9 @@ values (3, "Blood Work", "190102");
 insert into userprocedures (uid, procedurename, proceduredate)
 values (3, "EKG", "180102");
 
--- Populate data for our third user Mary Kwon (Berungi)
-insert into users (firstname, lastname, zipcode, birthyear, gender, email, cell, height, weight) 
-values("Mary", "Kwon", "08816", 1970, "Female", "brinnetbirungi@yahoo.com", "848-391-2898", 183, 210);
-
-insert into userhealthproviders (uid, hpid, lastvisit, nextvisit) 
-values(3, "1669522595", "190101", null);
-
-insert into userhealthproviders (uid, hpid, lastvisit, nextvisit) 
-values(3, "1679607451", "181222", null);
-
-insert into usermedications (uid, medicationname, dosage, numrefill, nextrefilldate, healthcondition)
-values (3, "Norvasc", "5 mg", 2, "190326", "Hypertension");
-
-insert into usermedications (uid, medicationname, dosage, numrefill, nextrefilldate, healthcondition)
-values (3, "Metformin", "500 mg", 3, "190405", "Diabetes - Blood Sugar");
-
-insert into userprocedures (uid, procedurename, proceduredate)
-values (3, "Blood Work", "190102");
-
-insert into userprocedures (uid, procedurename, proceduredate)
-values (3, "EKG", "180102");
-
 -- Populate data for our third user Robert Nice (Juan)
 insert into users (firstname, lastname, zipcode, birthyear, gender, email, cell, height, weight) 
-values("Robert", "Nice", "08816", 1970, "Male", "b", "848-391-2898", 183, 210);
+values("Robert", "Nice", "08816", 1970, "Male", "juanduran2323@gmail.com", "551-597-5041", 183, 210);
 
 insert into userhealthproviders (uid, hpid, lastvisit, nextvisit) 
 values(4, "1669522595", "190101", null);
