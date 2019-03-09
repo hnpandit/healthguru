@@ -66,6 +66,28 @@ var orm = {
     });
   },
 
+  selectAllOneUser: function (condition, cb) {
+    var queryString = "select users.id, users.firstname, users.lastname, users.zipcode, users.birthyear, users.gender, users.email, users.cell,";
+    queryString += " users.height, users.weight, userhealthproviders.id, userhealthproviders.hpid, userhealthproviders.lastvisit, userhealthproviders.nextvisit,";
+    queryString += " usermedications.id, usermedications.medicationname, usermedications.dosage, usermedications.numrefill, usermedications.nextrefilldate, usermedications.healthcondition,";
+    queryString += " userprocedures.id, userprocedures.procedurename, userprocedures.proceduredate";
+    queryString += " from users, userhealthproviders, usermedications, userprocedures";
+    queryString +=  " WHERE users.id = userhealthproviders.uid and ";
+    queryString += " users.id = usermedications.uid and ";
+    queryString += " users.id = userprocedures.uid and ";
+    queryString += condition;
+
+    console.log(queryString);
+
+    connection.query(queryString, function (err, result) {
+      if (err) {
+        throw err;
+      }
+      cb(result);
+    });
+  },
+
+
   insertOne: function (table, cols, vals, cb) {
     var queryString = "INSERT INTO " + table;
 

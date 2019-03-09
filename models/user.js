@@ -8,6 +8,12 @@ var user = {
         });
     },
 
+    selectAllOneUser: function (condition, cb) {
+        orm.selectAllOneUser(condition, function (res) {
+            cb(res);
+        });
+    },   
+
     selectOne: function (condition, cb) {
         orm.selectOne("users", condition, function (res) {
             cb(res);
