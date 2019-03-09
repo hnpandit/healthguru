@@ -17,6 +17,11 @@ var userhealthproviders = {
     orm.updateOne("userhealthproviders", objColVals, condition, function(res) {
       cb(res);
     });
+  },
+  deleteOne: function(objColVals, condition, cb) {
+    orm.deleteOne("userhealthproviders", objColVals, condition, function(res) {
+      cb(res);
+    });
   }
 };
 
