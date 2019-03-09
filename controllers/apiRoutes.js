@@ -1,5 +1,7 @@
 // Import the model (user.js) to use its database functions.
 var USER = require("../models/user.js");
+var USERMEDICATION = require("../models/userMedication.js");
+
 
 module.exports = function (app) {
   // Get all examples
@@ -20,15 +22,17 @@ module.exports = function (app) {
 
   app.get("/api/hg/users/:id", function (req, res) {
 
-    var condition = "id = " + req.params.id;
+    var condition = "users.id = " + req.params.id;
 
     console.log("condition :: ", condition);
-    USER.selectOne(condition,function (data) {
+    USER.selectAllOneUser(condition,function (data) {
       var userObject = {
         users: data
       };
       console.log(userObject);
+      res.json(userObject)
     });
+
   });
 
 }

@@ -7,6 +7,13 @@ var usermedications = {
             cb(res);
         });
     },
+
+    selectOne: function (condition, cb) {
+        orm.selectOne("usermedications", condition, function (res) {
+            cb(res);
+        });
+    },
+
     // The variables cols and vals are arrays.
     insertOne: function (cols, vals, cb) {
         orm.insertOne("usermedications", cols, vals, function (res) {
