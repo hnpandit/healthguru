@@ -110,11 +110,6 @@ values (3, "EKG", "180102");
 
 -- Populate data for our third user Robert Nice (Juan)
 insert into users (firstname, lastname, zipcode, birthyear, gender, email, cell, height, weight) 
-<<<<<<< Updated upstream
-values("FirstName5", "LastName5", "91210", 1990, "Male", "test5@email.com", "617-760-2000", 200, 220);
-
-insert into 
-=======
 values("Robert", "Nice", "08816", 1970, "Male", "b", "848-391-2898", 183, 210);
 
 insert into userhealthproviders (uid, hpid, lastvisit, nextvisit) 
@@ -140,4 +135,3 @@ SELECT * FROM users;
 SELECT * FROM userhealthproviders;
 SELECT * FROM usermedications;
 SELECT * FROM userprocedures;
->>>>>>> Stashed changes
