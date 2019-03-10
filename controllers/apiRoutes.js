@@ -18,7 +18,7 @@ module.exports = function (app) {
   });
 
 
-//Brings the data from all the tables in databsae
+  //Brings the data from all the tables in databsae
   app.get("/api/hg/users/:id", function (req, res) {
 
     var condition = req.params.id;
@@ -33,6 +33,11 @@ module.exports = function (app) {
     });
 
   });
+
+
+  /* 
+  //This code needs to be looked into, It works fine sometimes, 
+  //but has issues with teh arraylist populated and not cleared for next run
 
   var userHealthDetails = [];
   userHealthDetails.length = 0;
@@ -70,6 +75,55 @@ module.exports = function (app) {
     res.json(userHealthDetails);
    // userHealthDetails.length = 0;
 
+  });
+
+  */
+
+
+  app.post("/api/user", function (req, res) {
+    USER.insertOne([
+      "firstname", "lastname", "zipcode", "birthyear", "gender", "email", "cell", "height", "weight"
+    ], [
+        req.body.firstname, req.body.lastname, req.body.zipcode, req.body.birthyear,
+        req.body.gender, req.body.email, req.body.cell, req.body.height, req.body.weight
+      ], function (result) {
+        // Send back the ID of the new record
+        res.json(result);
+      });
+  });
+
+  app.post("/api/userMedication", function (req, res) {
+    USERMEDICATION.insertOne([
+      "uid", "medicationname", "dosage", "numrefill", "nextrefilldate", "healthcondition"
+    ], [
+        req.body.uid, req.body.medicationname, req.body.dosage, req.body.numrefill,
+        req.body.nextrefilldate, req.body.healthcondition
+      ], function (result) {
+        // Send back the ID of the new record
+        res.json(result);
+      });
+  });
+
+  app.post("/api/userProvider", function (req, res) {
+    USERHEALTHPROVIDER.insertOne([
+      "uid", "hpid", "lastvisit", "nextvisit"
+    ], [
+        req.body.uid, req.body.hpid, req.body.lastvisit, req.body.nextvisit
+      ], function (result) {
+        // Send back the ID of the new record
+        res.json(result);
+      });
+  });
+
+  app.post("/api/userProcedure", function (req, res) {
+    USERPROCEDURE.insertOne([
+      "uid", "procedurename", "proceduredate"
+    ], [
+        req.body.uid, req.body.procedurename, req.body.proceduredate
+      ], function (result) {
+        // Send back the ID of the new record
+        res.json(result);
+      });
   });
 
 
