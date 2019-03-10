@@ -126,5 +126,92 @@ module.exports = function (app) {
       });
   });
 
+  // UPDATES to DB Tables
+
+  app.put("/api/users/:id", function (req, res) {
+    var condition = "id = " + req.params.id;
+
+    console.log("condition :: ", condition);
+
+    USER.updateOne({
+      "firstname": "'"+req.body.firstname+"'",
+      "lastname": "'"+req.body.lastname+"'",
+      "zipcode": "'"+req.body.zipcode+"'",
+      "birthyear": req.body.birthyear,
+      "gender": "'"+req.body.gender+"'",
+      "email": "'"+req.body.email+"'",
+      "cell": "'"+req.body.cell+"'",
+      "height": req.body.height,
+      "weight": req.body.weight
+    }, condition, function (result) {
+      if (result.changedRows == 0) {
+        // If no rows were changed, then the ID must not exist, so 404
+        return res.status(404).end();
+      } else {
+        res.status(200).end();
+      }
+    });
+  });
+
+  app.put("/api/userMedication/:id", function (req, res) {
+    var condition = "id = " + req.params.id;
+
+    console.log("condition :: ", condition);
+
+    USERMEDICATION.updateOne({
+      "uid": req.body.uid, 
+      "medicationname" : "'"+req.body.medicationname+"'", 
+      "dosage" : "'"+req.body.dosage+"'",  
+      "numrefill" : req.body.numrefill, 
+      "nextrefilldate" : req.body.nextrefilldate,  
+      "healthcondition" :  "'"+req.body.healthcondition+"'"
+    }, condition, function (result) {
+      if (result.changedRows == 0) {
+        // If no rows were changed, then the ID must not exist, so 404
+        return res.status(404).end();
+      } else {
+        res.status(200).end();
+      }
+    });
+  });
+
+  app.put("/api/userProvider/:id", function (req, res) {
+    var condition = "id = " + req.params.id;
+
+    console.log("condition :: ", condition);
+
+    USERHEALTHPROVIDER.updateOne({
+      "uid" : req.body.uid, 
+      "hpid" : "'"+req.body.hpid+"'", 
+      "lastvisit" : req.body.lastvisit, 
+      "nextvisit" : req.body.nextvisit
+    }, condition, function (result) {
+      if (result.changedRows == 0) {
+        // If no rows were changed, then the ID must not exist, so 404
+        return res.status(404).end();
+      } else {
+        res.status(200).end();
+      }
+    });
+  });
+
+  app.put("/api/userProcedure/:id", function (req, res) {
+    var condition = "id = " + req.params.id;
+
+    console.log("condition :: ", condition);
+
+    USERPROCEDURE.updateOne({
+      "uid" : req.body.uid,
+      "procedurename" : req.body.procedurename,  
+      "proceduredate" : req.body.proceduredate      
+    }, condition, function (result) {
+      if (result.changedRows == 0) {
+        // If no rows were changed, then the ID must not exist, so 404
+        return res.status(404).end();
+      } else {
+        res.status(200).end();
+      }
+    });
+  });
 
 }
