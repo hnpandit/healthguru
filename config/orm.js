@@ -67,15 +67,13 @@ var orm = {
   },
 
   selectAllOneUser: function (condition, cb) {
-    var queryString = "select users.id, users.firstname, users.lastname, users.zipcode, users.birthyear, users.gender, users.email, users.cell,";
-    queryString += " users.height, users.weight, userhealthproviders.id, userhealthproviders.hpid, userhealthproviders.lastvisit, userhealthproviders.nextvisit,";
-    queryString += " usermedications.id, usermedications.medicationname, usermedications.dosage, usermedications.numrefill, usermedications.nextrefilldate, usermedications.healthcondition,";
-    queryString += " userprocedures.id, userprocedures.procedurename, userprocedures.proceduredate";
-    queryString += " from users, userhealthproviders, usermedications, userprocedures";
-    queryString +=  " WHERE users.id = userhealthproviders.uid and ";
-    queryString += " users.id = usermedications.uid and ";
-    queryString += " users.id = userprocedures.uid and ";
-    queryString += condition;
+    var queryString = " ";
+    queryString += " select a.id, a.firstname,\"medication\" as type, b.id as secondid, b.medicationname as medname, null as lastvisit, null as procedurename from users a, usermedications b ";
+    queryString += " where a.id = b.uid and a.id = " + condition + "  union all ";
+    queryString +=  "select a.id, a.firstname, \"doctor\" as type, c.id as secondid, null as medname, c.lastvisit as lastvisit, null as procedurename from users a, userhealthproviders c ";
+    queryString += " where a.id = c.uid and a.id = " + condition + "  union all ";
+    queryString += " select a.id, a.firstname, \"procedure\" as type, d.id as secondid, null as medname, null as lastvisit, d.procedurename as procedurename from users a, userprocedures d ";
+    queryString += " where a.id = d.uid and a.id = " + condition;
 
     console.log(queryString);
 
