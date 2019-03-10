@@ -35,26 +35,32 @@ module.exports = function (app) {
   });
 
   var userHealthDetails = [];
+  userHealthDetails.length = 0;
+
   app.get("/api/hg/:id", function (req, res) {
-    //userHealthDetails = [];
+
    
     var condition = "uid = " + req.params.id;
     var condition1 = "id = " + req.params.id;
 
 
     USER.selectOne(condition1, function (data) {
+      console.log(JSON.stringify(data));
       userHealthDetails.push({ user: data });
     });
 
     USERMEDICATION.selectOne(condition, function (data) {
+      console.log(JSON.stringify(data));
       userHealthDetails.push({ medication: data });
     });
 
     USERHEALTHPROVIDER.selectOne(condition, function (data) {
+      console.log(JSON.stringify(data));
       userHealthDetails.push({ provider: data });
     });
 
     USERPROCEDURE.selectOne(condition, function (data) {
+      console.log(JSON.stringify(data));
       userHealthDetails.push({ procedure: data });
     });
 
@@ -62,7 +68,9 @@ module.exports = function (app) {
    // console.log(userHealthDetails);
     console.log(JSON.stringify(userHealthDetails));
     res.json(userHealthDetails);
+   // userHealthDetails.length = 0;
 
   });
+
 
 }
