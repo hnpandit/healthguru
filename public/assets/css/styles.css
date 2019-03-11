@@ -1,0 +1,238 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    position: absolute;
+    width: 100%;
+    z-index: 3;
+    height: 44px;
+    background-color: #fff;
+    border-bottom: 3px solid #2d3d51;
+}
+.logo {
+    text-align: center;
+    padding-top: 10px
+}
+.side-nav {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background-color: #35475e;
+    z-index: 1;
+   
+}
+
+.side-nav ul {
+    margin: 0;
+    padding: 0;
+}
+.side-nav ul li {
+    margin-top: 25px;
+    padding: 10px 10px;
+    border-bottom: 1px solid #3c506a;
+    position: relative;
+}
+/* .side-nav ul li.active:before { 
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+}*/
+.side-nav ul li a {
+    color: #fff;
+    display: block;
+    text-decoration: none;
+}
+.side-nav ul li i {
+    color: #0497df;
+    min-width: 20px;
+    text-align: center;
+}
+.side-nav ul li span:nth-child(2) {
+    margin-left: 10px;
+    font-size: 14px;
+    font-weight: 600;
+}
+/* main content styles */
+.main-content {
+    padding: 40px;
+    margin-top: 0;
+    padding: 0;
+    padding-top: 44px;
+    height: 100%;
+    overflow: scroll;
+}
+
+/* set element styles to fit tablet and higher(desktop) */
+@media screen and (min-width: 600px) {
+    .header {
+        background-color: #35475e;
+        z-index: 1;
+    }
+    .header .logo {
+        display: none;
+    }
+    .nav-trigger {
+        display: none;
+    }
+    .nav-trigger span, .nav-trigger span:before, span:after {
+        background-color: #fff;
+    }
+    .side-nav {
+        display: block;
+        width: 70px;
+        z-index: 2;
+    }
+    
+    .side-nav ul li span:nth-child(2) {
+        display: none;
+    }
+    .side-nav .logo i {
+        padding-left: 12px;
+    }
+    .side-nav .logo span {
+        display: none;
+    }
+    .side-nav ul li i {
+        font-size: 26px;
+    }
+    .side-nav ul li a {
+        text-align: center;
+    }
+    .main-content {
+        margin-left: 80px;
+    }
+}
+
+/* set element styles for desktop */
+@media screen and (min-width: 800px) {
+    .side-nav {
+        width: 200px;
+    }
+    .side-nav ul li span:nth-child(2) {
+        display: inline-block;
+    }
+    .side-nav ul li i {
+        font-size: 16px;
+    }
+    .side-nav ul li a {
+        text-align: left;
+    }
+    .side-nav .logo i {
+        padding-left: 0;
+    }
+    .side-nav .logo span {
+        display: inline-block;
+    }
+    .main-content {
+        margin-left: 200px;
+    }
+}
+
+/* ----------------main content------------------ */
+
+.user-name {
+    text-align: center;
+    font-size: 40px;
+    padding-top: 50px;
+    text-transform: uppercase;
+    background-color: rgb(240, 240, 240);
+    width: 100%;
+    height: 150px;
+}
+
+/* ---------tables-------------- */
+
+
+
+.container-fluid p {
+    text-transform: uppercase;
+    font-size: 35px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.container-fluid table {
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.container-fluid .text-bttn {
+    text-align: center;
+}
+
+.space {
+    height: 70px;
+}
+
+.container-fluid-two, .container-fluid{
+    font-size: 40px;
+    /* text-align: center; */
+    margin-top: 50px;
+    
+    
+}
+
+.container-fluid-two table {
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.container-fluid-two .text-bttn {
+    text-align: center;
+}
+
+tbody .td-one {
+  padding-left: 150px;
+}
+
+tbody .td-onee {
+    padding-left: 150px;
+    text-align: left;
+}
+
+tbody .td-three{
+   text-align: center;
+}
+
+tbody .td-two {
+  padding-left: 20px;
+}
+
+.container-fluid-two p {
+    text-transform: uppercase;
+    font-size: 35px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.container-fluid-two tr {
+    text-align: center;
+}
+
+
+.add-button {
+    font-size: 15px;
+    text-decoration: none;
+    padding: 2px 3px 2px 3px;
+    background-color: rgb(199, 198, 198);
+    border-radius: 3px;
+}
+
+input {
+    padding: 5px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: gray 1px solid;
+}
+
