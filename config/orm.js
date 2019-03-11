@@ -67,6 +67,7 @@ var orm = {
   },
 
   selectAllOneUser: function (condition, cb) {
+  /*
     var queryString = " ";
     queryString += " select a.id, a.firstname,\"medication\" as type, b.id as secondid, b.medicationname as medname, null as lastvisit, null as procedurename from users a, usermedications b ";
     queryString += " where a.id = b.uid and a.id = " + condition + "  union all ";
@@ -74,7 +75,17 @@ var orm = {
     queryString += " where a.id = c.uid and a.id = " + condition + "  union all ";
     queryString += " select a.id, a.firstname, \"procedure\" as type, d.id as secondid, null as medname, null as lastvisit, d.procedurename as procedurename from users a, userprocedures d ";
     queryString += " where a.id = d.uid and a.id = " + condition;
-
+  */
+    var queryString = " ";
+    queryString += " select a.id, a.firstname,\"medication\" as type, b.id as secondid, b.medicationname as medname, null as lastvisit, null as procedurename, numrefill, null as proceduredate, nextrefilldate "
+    queryString += " from users a, usermedications b ";
+    queryString += " where a.id = b.uid and a.id = " + condition + "  union all ";
+    queryString += " select a.id, a.firstname, \"doctor\" as type, c.id as secondid, null as medname, c.lastvisit as lastvisit, null as procedurename, -1 as numrefill, null as proceduredate, null as nextrefilldate "
+    queryString += " from users a, userhealthproviders c ";
+    queryString += " where a.id = c.uid and a.id = " + condition + "  union all ";
+    queryString += " select a.id, a.firstname, \"procedure\" as type, d.id as secondid, null as medname, null as lastvisit, d.procedurename as procedurename, -1 as numrefill, proceduredate, null as nextrefilldate "
+    queryString += " from users a, userprocedures d ";
+    queryString += " where a.id = d.uid and a.id = " + condition;
     console.log(queryString);
 
     connection.query(queryString, function (err, result) {
