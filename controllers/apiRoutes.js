@@ -214,4 +214,58 @@ module.exports = function (app) {
     });
   });
 
+app.delete("/api/userProvider/:uid/:pid", function (req, res) 
+{
+  var condition = " id = " + req.params.pid + " and uid = " + req.params.uid;
+  console.log("condition :: ", condition);
+
+  USERHEALTHPROVIDER.deleteOne(condition, function (result) {
+    if (result.affectedRows == 0) 
+    {
+      // If no rows were changed, then the ID must not exist, so 404
+      res.status(404).end();
+    } 
+    else 
+    {
+      res.status(200).end();
+    }
+  });
+});
+
+app.delete("/api/userMedication/:uid/:mid", function (req, res) 
+{
+  var condition = " id = " + req.params.mid + " and uid = " + req.params.uid;
+  console.log("condition :: ", condition);
+
+  USERMEDICATION.deleteOne(condition, function (result) {
+    if (result.affectedRows == 0) 
+    {
+      // If no rows were changed, then the ID must not exist, so 404
+      res.status(404).end();
+    } 
+    else 
+    {
+      res.status(200).end();
+    }
+  });
+});
+
+app.delete("/api/userProcedure/:uid/:pid", function (req, res) 
+{
+  var condition = " id = " + req.params.pid + " and uid = " + req.params.uid;
+  console.log("condition :: ", condition);
+
+  USERPROCEDURE.deleteOne(condition, function (result) {
+    if (result.affectedRows == 0) 
+    {
+      // If no rows were changed, then the ID must not exist, so 404
+      res.status(404).end();
+    } 
+    else 
+    {
+      res.status(200).end();
+    }
+  });
+});
+
 }
