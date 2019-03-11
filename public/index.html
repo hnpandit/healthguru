@@ -9,23 +9,79 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<style>
-    body{
-        justify-content: center !important;
-        align-items: center !important;
-        display: flex !important;
-    }
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 
-    .container {
-        background-color: aqua;
-        margin-top: 5%;
-    }
-    body {
-        background-image: url('https://source.unsplash.com/1600x900/?doctor')
-    }
-    
+    <style>
+        body {
+            justify-content: center !important;
+            align-items: center !important;
+            display: flex !important;
+        }
 
-</style>
+        .container {
+            
+            /* margin-top: 5%; */
+            height: 50%;
+            align-content: center;
+
+           
+        }
+
+        body,
+        html {
+            background-image: url('https://source.unsplash.com/1600x900/?doctor');
+            background-size: cover;
+            /* height: 100%; */
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        .input-group-prepend span {
+            width: 50px;
+            background-color: #ffc312;
+            color: black;
+            border: 0 !important;
+        }
+
+        .login_btn {
+            color: black;
+            background-color: #ffc312;
+            width: 100px;
+        }
+
+        .login_btn:hover {
+            color: black;
+            background-color: white;
+        }
+
+        .register_btn {
+            color: black;
+            background-color: #ffc312;
+            width: 100px;
+        }
+
+        .register_btn:hover {
+            color: black;
+            background-color: white;
+        }
+
+        #loginSection {
+            background-position: center;
+            background-color: #EAEAEA;
+            margin-top: 30%;
+            border-radius: 12px;
+        }
+        #signupSection{
+            background-color: #EAEAEA;
+            margin-top: 5%;
+            border-radius: 12px;
+        }
+        .text-center{
+
+        }
+    </style>
     <title>Health Guru</title>
 </head>
 
@@ -33,21 +89,28 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-sm-8 offset-md-2">
+            <div class="col-sm-6 offset-md-3">
                 <section id="loginSection">
                     <div class="container">
                         <h2 class="text-center">Welcome to Healthguru!</h2>
                         <form>
                             <div class="form-login">
-                                <div class="form-group col-sm-12">
-                                    <input type="email" class="form-control" id="email" placeholder="Enter email">
+                                <div class="input-group form-group col-sm-12">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    </div>
+
+                                    <input type="email" class="form-control" id="loginemail" placeholder="Email">
                                 </div>
-                                <div class="form-group col-sm-12">
-                                    <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+                                <div class="input-group form-group col-sm-12">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                    </div>
+                                    <input type="password" class="form-control" id="loginpwd" placeholder="Password">
                                 </div>
                             </div>
                             <center>
-                                <button type="login" class="btn btn-success">Log In</button>
+                                <button type="login" id ="signInSubmit" class="btn float-center login_btn">Log In</button>
                                 <div class="container signin">
                                     <p>Don't have account? <a href="#" id="showSignupPage">Create Account</a>.</p>
                                 </div>
@@ -62,22 +125,40 @@
                         <form>
                             <div class="form-signup">
                                 <div class="row">
-                                    <div class="form-group col-sm-12">
+                                    <div class="input-group form-group col-sm-12">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="far fa-user"></i></i></span>
+                                        </div>
                                         <input type="fname" class="form-control" id="fname" placeholder="First Name">
                                     </div>
-                                    <div class="form-group col-sm-12">
+                                    <div class="input-group form-group col-sm-12">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="far fa-user"></i></i></span>
+                                        </div>
                                         <input type="lname" class="form-control" id="lname" placeholder="Last Name">
                                     </div>
-                                    <div class="form-group col-sm-12">
-                                        <input type="email" class="form-control" id="email" placeholder="Email">
+                                    <div class="input-group form-group col-sm-12">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                        </div>
+                                        <input type="email" class="form-control" id="registeremail" placeholder="Email">
                                     </div>
-                                    <div class="form-group col-sm-12">
-                                        <input type="password" class="form-control" id="pwd" placeholder="Password">
+                                    <div class="input-group form-group col-sm-12">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                        </div>
+                                        <input type="password" class="form-control" id="registerpwd" placeholder="Password">
                                     </div>
-                                    <div class="form-group col-sm-12">
+                                    <div class="input-group form-group col-sm-12">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                                        </div>
                                         <input type="text" class="form-control" id="inputZip" placeholder="Zipcode">
                                     </div>
-                                    <div class="form-group col-sm-12">
+                                    <div class="input-group form-group col-sm-12">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
+                                        </div>
                                         <input type="tel" class="form-control" id="phoneNumber"
                                             placeholder="Phone Number" required>
                                     </div>
@@ -88,7 +169,7 @@
                                                 <p class="form-inline">Date Of Birth</p>
                                                 <div class="row">
 
-                                                    <div class="form-group col-sm-4">
+                                                    <!-- <div class="form-group col-sm-4">
 
                                                         <select class="form-control">
                                                             <option>Day</option>
@@ -147,7 +228,7 @@
 
                                                         </select>
 
-                                                    </div>
+                                                    </div> -->
 
                                                     <div class="col-sm-4">
 
@@ -248,15 +329,21 @@
 
                                                     </div>
 
-
+                                                   
 
 
 
 
 
                                                 </div>
-
+                                                
                                             </div>
+                                            <div class="form-group">
+                                                    <p class="form-inline">Weight</p>
+                                                    <input type="weight" class="form-control" id="weight" placeholder=""
+                                            </div>
+                                            
+                                                <p class="form-inline">Height</p>
                                         </div>
                                     </div>
                                     <br>
@@ -286,7 +373,7 @@
                             </div>
 
                             <center>
-                                <button type="submit" class="btn btn-success">Register</button>
+                                <button type="submit" class="btn float-center register_btn">Register</button>
                                 <div class="container signin">
                                     <p>Already have an account? <a href="#" id="showSigninPage">Sign in</a>.</p>
                                 </div>
@@ -295,32 +382,20 @@
 
 
                         </form>
+
                     </div>
                 </section>
+                
             </div>
         </div>
     </div>
-
+    <div id="errorText"></div>
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("#signupSection").hide();
-
-            $("#showSignupPage").on('click', function () {
-                $("#signupSection").show();
-                $("#loginSection").hide();
-            });
-
-            $("#showSigninPage").on('click', function () {
-                $("#loginSection").show();
-                $("#signupSection").hide();
-            })
-        })
-    </script>
+   <script src="assets/javascript/login.js"></script>
 </body>
 
 </html>
