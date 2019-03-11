@@ -1,0 +1,162 @@
+<!-- Rutgers Coding BootCamp - Full Stack Developer - Mon/Wed -->
+<!-- Homework Train Scheduler (firebase) - Himanshu Pandit -->
+<!-- December 22, 2018 -->
+
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+
+  <meta charset="UTF-8">
+  <title>Train Scheduler</title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <!-- Firebase Reference -->
+  <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+
+  <!-- Moment.js Reference -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+
+  <style>
+    #employee-table th,
+    td {
+      display: inline-block;
+      width: 16.575%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Train Scheduler -->
+  <div class="container">
+
+    <!-- Jumbotron -->
+    <div class="jumbotron" style="background-color:goldenrod; color:navajowhite">
+        <div class="row" style="text-align: center;">
+            <div class="col-md-6">
+                <h1 class="text-left">HealthGuru</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Doctors -->
+        <div class="card mb-4">
+          <div class="card-header" style="background-color:goldenrod; color:navajowhite;">Health Care Providers</div>
+          <div class="card-body">
+            <table class="table table-sm table-hover" id='employee-table'>
+              <thead>
+                <tr>
+                  <th scope="col">No</th>
+                  <th scope="col">Doctor</th>
+                  <th scope="col">Last Visit</th>
+                  <th scope="col">Next Visit</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Doctors -->
+        <div class="card mb-4">
+          <div class="card-header" style="background-color:goldenrod; color:navajowhite;">Medications</div>
+          <div class="card-body">
+            <table class="table table-sm table-hover" id='employee-table'>
+              <thead>
+                <tr>
+                  <th scope="col">No</th>
+                  <th scope="col">Medication</th>
+                  <th scope="col">Refills Remaining</th>
+                  <th scope="col">Next Refil Date</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Doctors -->
+        <div class="card mb-4">
+          <div class="card-header" style="background-color:goldenrod; color:navajowhite;">Medical Procedures</div>
+          <div class="card-body">
+            <table class="table table-sm table-hover" id='employee-table'>
+              <thead>
+                <tr>
+                  <th scope="col">No</th>
+                  <th scope="col">Procedure Name</th>
+                  <th scope="col">Procedure Date</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Add Train  -->
+        <div class="card mb-4">
+          <div class="card-header" style="background-color:goldenrod; color:navajowhite;">Add Train</div>
+          <div class="card-body">
+
+            <!-- Entry Form -->
+            <form>
+              <div class="form-group">
+                <label for="train-name-input">Train Name</label>
+                <input class="form-control" id="txtTrainName" type="text">
+              </div>
+              <div class="form-group">
+                <label for="destination-input">Destination</label>
+                <input class="form-control" id="txtDestination" type="text">
+              </div>
+              <div class="form-group">
+                <label for="first-train-time-input">First Train Time (HH:mm - military time)</label>
+                <input class="form-control" id="txtFirstTrainTime" type="text">
+              </div>
+              <div class="form-group">
+                <label for="frequency-input">Frequency (min)</label>
+                <input class="form-control" id="txtFrequency" type="text">
+              </div>
+              <button class="btn btn-primary float-left" id="btnAddTrain">Add Train</button>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+          @Himanshu Pandit, Rutgers Coding Bootcamp 2018.
+        </div>
+    </div>
+
+  </div>
+
+  <!-- JavaScript -->
+  <script src="assets/javascript/dashboard.js"></script>
+
+</body>
+
+</html>
