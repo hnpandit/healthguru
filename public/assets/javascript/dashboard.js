@@ -1,109 +1,9 @@
-// Rutgers Coding BootCamp - Full Stack Developer - Mon/Wed
-// Homework Train Scheduler (firebase) - Himanshu Pandit 
-// December 22, 2018
-    
-// Initialize Firebase
-var config = {
-      apiKey: "AIzaSyD6RmZ9ZtOeRtn8qTGf1xG49wtx9xu0gEg",
-      authDomain: "hnpandit12122018.firebaseapp.com",
-      databaseURL: "https://hnpandit12122018.firebaseio.com",
-      projectId: "hnpandit12122018",
-      storageBucket: "hnpandit12122018.appspot.com",
-      messagingSenderId: "328128045191"
-};
-
-firebase.initializeApp(config);
-database = firebase.database();
- 
-// Global Variables
-var counter = 1;
-var minutesAway = 0;
-var nextArrival = "";
-
-var train = {
-      trainName:"",
-      destination:"",
-      startTime:"",
-      frequency:0,
-}
-
-$("#btnAddTrain").on("click", function(event)
-{
-  event.preventDefault();
-  
-  train.trainName = $("#txtTrainName").val().trim();
-  if (train.trainName.length === 0)
-  {
-    alert("Pleas enter train name.");
-    return;
-  }
-  train.destination = $("#txtDestination").val().trim();
-  if (train.destination.length === 0)
-  {
-    alert("Pleas enter destination.");
-    return;
-  }
-
-  train.startTime = $("#txtFirstTrainTime").val().trim();
-  if (train.startTime.length === 0)
-  {
-    alert("Pleas enter start time in HH:MM format.");
-    return;
-  }
-  var startTimeConverted = moment(train.startTime, "HH:mm");
-  if (startTimeConverted.isValid() === false)
-  {
-    alert("Pleas enter start time in HH:MM format.");
-    return;
-  }
-  
-  train.frequency = $("#txtFrequency").val().trim();
-  if (train.frequency.length === 0)
-  {
-    alert("Pleas enter frequency in number format (e.g. 30)");
-    return;
-  }
-  if (isNaN(train.frequency))
-  {
-    alert("Pleas enter frequency in number format (e.g. 30)");
-    return;
-  }
-
-  database.ref("/schedule").push(train);  
-})
-
-function calculateNextTrainDetails()
-{
-  // initialize variabes
-  minutesAway = 0;
-  nextArrival = "";
-
-  // First Time (pushed back 1 year to make sure it comes before current time)
-  var firstTimeConverted = moment(train.startTime, "HH:mm").subtract(1, "years");
-
-  // Current Time
-  var currentTime = moment();
-
-  // Difference between the times
-  var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
-  
-  // Time apart (remainder)
-  var tRemainder = diffTime % train.frequency;
-
-  // Minute Until Train
-  minutesAway = train.frequency - tRemainder;
- 
-  // Next Train
-  var nextArrivalNonFormat = moment().add(minutesAway, "minutes");
-  nextArrival = moment(nextArrivalNonFormat).format("hh:mm A")
-}
-
 function createTrainRecord()
 {
   var rowRec = $("<tr>");
-  var th = $("<th>");
-  th.attr("scope","col");
-  th.text(counter);
+  var td = $("<td>");
+  td.attr("scope", "col");
+  td.text(counter);
   var tdTrainName = $("<td>");
   tdTrainName.text(train.trainName);
   var tdDestination =  $("<td>");
@@ -126,19 +26,88 @@ function createTrainRecord()
   $("#txtFrequency").val('');
 }
 
-// Firebase watcher + initial loader HINT: This code behaves similarly to .on("value")
-database.ref("/schedule").on("child_added", function(childSnapshot) {
+function displayUserDetails(id) 
+{
+  $.ajax({ url: `/api/hg/${id}`, method: "GET" })
+    .then(function(userData) {
+      
+      var counter = 1;
+      // Let's welcome our user
+      $("#username").text("Hello " + userData[0].user[0].firstname + ". Welcome to HealthGuru.");
 
-  // Make train object and add to the table
-  train.trainName = childSnapshot.val().trainName;
-  train.destination = childSnapshot.val().destination;
-  train.startTime = childSnapshot.val().startTime;
-  train.frequency = childSnapshot.val().frequency;
+      // Let's display user healthcare providers
+      counter = 1;
+      for (i=0; i<userData[2].provider.length; i++)
+      {
+        var rowRec = $("<tr>");
+        
+        var tdCounter = $("<td>");
+        tdCounter.text(counter);
 
-  calculateNextTrainDetails();
-  createTrainRecord();
+        var tdDoctor = $("<td>");
+        tdDoctor.text(userData[2].provider[i].hpid);
 
-  // Handle the errors
-}, function(errorObject) {
-  console.log("Errors handled: " + errorObject.code);
-});
+        var tdLastVisit = $("<td>");
+        tdLastVisit.text(userData[2].provider[i].lastvisit);
+
+        var tdNextVisit = $("<td>");
+        tdNextVisit.text(userData[2].provider[i].nextvisit);
+
+        rowRec.append(tdCounter, tdDoctor, tdLastVisit, tdNextVisit);
+        $("#doctor").append(rowRec);
+        counter++;
+      }
+
+      // Let's display user medications
+      counter = 1;
+      for (i=0; i<userData[1].medication.length; i++)
+      {
+        var rowRec = $("<tr>");
+        
+        var tdCounter = $("<td>");
+        tdCounter.text(counter);
+
+        var tdCondition = $("<td>");
+        tdCondition.text(userData[1].medication[i].healthcondition);
+
+        var tdMedName = $("<td>");
+        tdMedName.text(userData[1].medication[i].medicationname);
+
+        var tdDosage = $("<td>");
+        tdDosage.text(userData[1].medication[i].dosage);
+
+        var tdNumRefill = $("<td>");
+        tdNumRefill.text(userData[1].medication[i].numrefill);
+
+        var tdNextRefillDt = $("<td>");
+        tdNextRefillDt.text(userData[1].medication[i].nextrefilldate);
+
+        rowRec.append(tdCounter, tdCondition, tdMedName, tdDosage, tdNumRefill, tdNextRefillDt);
+        $("#medication").append(rowRec);
+        counter++;
+      }
+
+      // Let's display user procedures
+      counter = 1;
+      for (i=0; i<userData[3].procedure.length; i++)
+      {
+        var rowRec = $("<tr>");
+        
+        var tdCounter = $("<td>");
+        tdCounter.text(counter);
+
+        var tdProcName = $("<td>");
+        tdProcName.text(userData[3].procedure[i].procedurename);
+
+        var tdProcDate = $("<td>");
+        tdProcDate.text(userData[3].procedure[i].proceduredate);
+
+        rowRec.append(tdCounter, tdProcName, tdProcDate);
+        $("#procedure").append(rowRec);
+        counter++;
+      }
+
+    });
+}
+
+displayUserDetails(1);
