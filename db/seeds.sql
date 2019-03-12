@@ -34,7 +34,7 @@ insert into usermedications (uid, medicationname, dosage, numrefill, nextrefilld
 values (1, "Norvasc", "5 mg", 2, "190326", "Hypertension");
 
 insert into usermedications (uid, medicationname, dosage, numrefill, nextrefilldate, healthcondition)
-values (1, "Metformin", "500 mg", 0, "190405", "Diabetes - Blood Sugar");
+values (1, "Metformin", "500 mg", 0, "190215", "Diabetes - Blood Sugar");
 
 insert into userprocedures (uid, procedurename, proceduredate)
 values (1, "Blood Work", "180102");
