@@ -1,5 +1,3 @@
-
-
 $(document).ready(function () {
 
     var config = {
@@ -11,6 +9,8 @@ $(document).ready(function () {
         messagingSenderId: "1022606531230"
       };
       firebase.initializeApp(config);
+
+      var errorCaught = false;
 
       var email, password;
       
@@ -27,6 +27,9 @@ $(document).ready(function () {
     })
 
     $("#signInSubmit").on('click', function () {
+
+        event.preventDefault();
+
         email = $("#loginemail").val().trim();
         password = $("#loginpwd").val().trim();
 
@@ -59,8 +62,9 @@ $(document).ready(function () {
             return errorCaught = true;
         }).then(function () {
             if (!errorCaught) {
-                console.log('dashboard pages display')
-                window.open("dashboard.html", "_self")
+                sessionStorage.setItem("currentEmail", email);
+                console.log('dashboard pages display');
+                window.open("dashboard.html", "_self");
             }
 
             else {
