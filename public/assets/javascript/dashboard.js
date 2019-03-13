@@ -91,7 +91,14 @@ function getUserID()
 {
   //make db call to get user id for email
   console.log("This is user email : " + sessionStorage.getItem("currentEmail"));
-  displayUserDetails(2);
+  var email = sessionStorage.getItem("currentEmail");
+
+  $.ajax({ url: `/api/hg/email/${email}`, method: "GET" })
+      .then(function(userData) 
+  {
+    console.log("This is user id : " + userData[0].id);
+    displayUserDetails(userData[0].id);
+  });
 }
 
 getUserID();
