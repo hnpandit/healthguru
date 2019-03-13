@@ -38,7 +38,15 @@ module.exports = function (app) {
   
   //This code needs to be looked into, It works fine sometimes, 
   //but has issues with teh arraylist populated and not cleared for next run
+  app.get("/api/hg/email/:id", function (req, res) {
+    
+    var condition = "email = " + "\'"+req.params.id+"\'";
+  
+    USER.selectOne(condition, function (data) {
+      res.json(data);
+    });
 
+  });
 
 
 
