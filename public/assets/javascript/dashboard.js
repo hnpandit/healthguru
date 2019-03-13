@@ -1,30 +1,3 @@
-function createTrainRecord()
-{
-  var rowRec = $("<tr>");
-  var td = $("<td>");
-  td.attr("scope", "col");
-  td.text(counter);
-  var tdTrainName = $("<td>");
-  tdTrainName.text(train.trainName);
-  var tdDestination =  $("<td>");
-  tdDestination.text(train.destination);
-  var tdFrequency =  $("<td>");
-  tdFrequency.text(train.frequency);
-  var tdNextArrival =  $("<td>");
-  tdNextArrival.text(nextArrival);
-  var tdMinutesAway = $("<td>");
-  tdMinutesAway.text(minutesAway);
-
-  rowRec.append(th, tdTrainName, tdDestination, tdFrequency, tdNextArrival, tdMinutesAway);
-  $("tbody").append(rowRec);
-  counter = counter + 1;
-  nextArrival = "";
-  minutesAway = 0;
-  $("#txtTrainName").val('');
-  $("#txtDestination").val('');
-  $("#txtFirstTrainTime").val('');
-  $("#txtFrequency").val('');
-}
 
 function displayUserDetails(id) 
 {
@@ -51,6 +24,8 @@ function displayUserDetails(id)
         tdLastVisit.text(userData[2].provider[i].lastvisit);
 
         var tdNextVisit = $("<td>");
+        if (userData[2].provider[i].nextvisit === null)
+          tdNextVisit.css("background-color", "red");
         tdNextVisit.text(userData[2].provider[i].nextvisit);
 
         rowRec.append(tdCounter, tdDoctor, tdLastVisit, tdNextVisit);
@@ -77,6 +52,8 @@ function displayUserDetails(id)
         tdDosage.text(userData[1].medication[i].dosage);
 
         var tdNumRefill = $("<td>");
+        if (userData[1].medication[i].numrefill === 0)
+          tdNumRefill.css("background-color", "red");
         tdNumRefill.text(userData[1].medication[i].numrefill);
 
         var tdNextRefillDt = $("<td>");
@@ -110,4 +87,11 @@ function displayUserDetails(id)
     });
 }
 
-displayUserDetails(1);
+function getUserID()
+{
+  //make db call to get user id for email
+  console.log("This is user email : " + sessionStorage.getItem("currentEmail"));
+  displayUserDetails(2);
+}
+
+getUserID();
