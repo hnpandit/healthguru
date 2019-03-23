@@ -11,8 +11,8 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-        <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 
     <style>
         body {
@@ -22,12 +22,12 @@
         }
 
         .container {
-            
+
             /* margin-top: 5%; */
             height: 50%;
             align-content: center;
 
-           
+
         }
 
         body,
@@ -73,14 +73,14 @@
             margin-top: 30%;
             border-radius: 12px;
         }
-        #signupSection{
+
+        #signupSection {
             background-color: #EAEAEA;
             margin-top: 5%;
             border-radius: 12px;
         }
-        .text-center{
 
-        }
+        .text-center {}
     </style>
     <title>Health Guru</title>
 </head>
@@ -110,7 +110,8 @@
                                 </div>
                             </div>
                             <center>
-                                <button type="login" id ="signInSubmit" class="btn float-center login_btn">Log In</button>
+                                <button type="login" id="signInSubmit" class="btn float-center login_btn">Log
+                                    In</button>
                                 <div class="container signin">
                                     <p>Don't have account? <a href="#" id="showSignupPage">Create Account</a>.</p>
                                 </div>
@@ -147,7 +148,8 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                                         </div>
-                                        <input type="password" class="form-control" id="registerpwd" placeholder="Password">
+                                        <input type="password" class="form-control" id="registerpwd"
+                                            placeholder="Password">
                                     </div>
                                     <div class="input-group form-group col-sm-12">
                                         <div class="input-group-prepend">
@@ -328,24 +330,23 @@
                                                         </select>
 
                                                     </div>
-
-                                                   
-
-
-
-
-
                                                 </div>
-                                                
                                             </div>
                                             <div class="form-group">
-                                                    <p class="form-inline">Weight</p>
-                                                    <input type="weight" class="form-control" id="weight" placeholder=""
-                                            </div>
-                                            
                                                 <p class="form-inline">Height</p>
+                                                <input type="weight" class="form-control" id="weight" placeholder=""
+                                                    required>
+                                            </div>
+                                            <div class="form-group">
+                                                <p class="form-inline">Weight</p>
+                                                <input type="weight" class="form-control" id="weight" placeholder=""
+                                                    required>
+                                            </div>
+                                        
                                         </div>
                                     </div>
+
+
                                     <br>
                                     <div class="form-group col-sm-12">
                                         <div class="form-control">
@@ -373,7 +374,7 @@
                             </div>
 
                             <center>
-                                <button type="submit" class="btn float-center register_btn">Register</button>
+                                <button type="submit" id= "signUppage"class="btn float-center register_btn">Register</button>
                                 <div class="container signin">
                                     <p>Already have an account? <a href="#" id="showSigninPage">Sign in</a>.</p>
                                 </div>
@@ -385,7 +386,7 @@
 
                     </div>
                 </section>
-                
+
             </div>
         </div>
     </div>
@@ -395,7 +396,8 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-   <script src="assets/javascript/login.js"></script>
+    <script src="assets/javascript/login.js"></script>
+    <script src="assets/javascript/register.js"></script>
 </body>
 
 </html>

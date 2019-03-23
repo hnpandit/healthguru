@@ -1,7 +1,13 @@
 // Set up MySQL connection.
 var mysql = require("mysql2");
 
-var connection = mysql.createConnection({
+var connection;
+if (process.env.JAWSDB_URL) {
+    //Heroku delopyment
+    connection = mysql.createConnection(process.env.JAWSDB_URL);
+} else {
+  connection = mysql.createConnection({
+
   host: "localhost",
   port: 3306,
   user: "root",
@@ -9,6 +15,7 @@ var connection = mysql.createConnection({
   database: "healthguru_db"
 });
 
+};
 // Make connection.
 connection.connect(function(err) {
   if (err) {
